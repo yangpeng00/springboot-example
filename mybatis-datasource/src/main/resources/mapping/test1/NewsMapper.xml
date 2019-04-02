@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mybatisdatasource.mapper.test1.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.mybatisdatasource.model.test1.News" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="addDate" property="adddate" jdbcType="TIMESTAMP" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="commendState" property="commendstate" jdbcType="INTEGER" />
+    <result column="browses" property="browses" jdbcType="INTEGER" />
+    <result column="likes" property="likes" jdbcType="INTEGER" />
+    <result column="comments" property="comments" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.mybatisdatasource.model.test1.News" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, description, category, image, addDate, updateDate, state, commendState, 
+    browses, likes, comments, score
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatisdatasource.model.test1.News" >
+    insert into news (id, title, description, 
+      category, image, addDate, 
+      updateDate, state, commendState, 
+      browses, likes, comments, 
+      score, content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{category,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{adddate,jdbcType=TIMESTAMP}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{commendstate,jdbcType=INTEGER}, 
+      #{browses,jdbcType=INTEGER}, #{likes,jdbcType=INTEGER}, #{comments,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatisdatasource.model.test1.News" >
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="adddate != null" >
+        addDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="commendstate != null" >
+        commendState,
+      </if>
+      <if test="browses != null" >
+        browses,
+      </if>
+      <if test="likes != null" >
+        likes,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="adddate != null" >
+        #{adddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="commendstate != null" >
+        #{commendstate,jdbcType=INTEGER},
+      </if>
+      <if test="browses != null" >
+        #{browses,jdbcType=INTEGER},
+      </if>
+      <if test="likes != null" >
+        #{likes,jdbcType=INTEGER},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatisdatasource.model.test1.News" >
+    update news
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="adddate != null" >
+        addDate = #{adddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="commendstate != null" >
+        commendState = #{commendstate,jdbcType=INTEGER},
+      </if>
+      <if test="browses != null" >
+        browses = #{browses,jdbcType=INTEGER},
+      </if>
+      <if test="likes != null" >
+        likes = #{likes,jdbcType=INTEGER},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.mybatisdatasource.model.test1.News" >
+    update news
+    set title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      addDate = #{adddate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      commendState = #{commendstate,jdbcType=INTEGER},
+      browses = #{browses,jdbcType=INTEGER},
+      likes = #{likes,jdbcType=INTEGER},
+      comments = #{comments,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatisdatasource.model.test1.News" >
+    update news
+    set title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      addDate = #{adddate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      commendState = #{commendstate,jdbcType=INTEGER},
+      browses = #{browses,jdbcType=INTEGER},
+      likes = #{likes,jdbcType=INTEGER},
+      comments = #{comments,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
