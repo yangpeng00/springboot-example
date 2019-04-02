@@ -15,11 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SpringbootMybatisApplicationTests {
 
 	@Autowired
-	AdminMapper adminMapper;
-	@Test
-	public void contextLoads() {
-		Admin admin = adminMapper.selectByPrimaryKey(1);
-		System.out.println(JSON.toJSONString(admin));
-	}
+    AdminMapper adminMapper;
+    @Test
+    public void contextLoads() {
+        Admin admin = adminMapper.selectByPrimaryKey(1);
+        System.out.println(JSON.toJSONString(admin));
+    }
 
 }
